@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)file:///D:/workspace/js_workspace/project0922/%EB%8B%A8%EC%96%B4%EA%B2%8C%EC%9E%84.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <style>  
+          .wrapper{
+               width: 400px;
+               height: 650px;
+               margin: auto;
+          }
+          #question{
+               width:100%;
+               height: 250px;
+               background: yellow;
+               font-size:95px;
+               text-align: center;
+          }
+          .word-input{
+               width: 100%;
+               height: 100px;
+          }
+          .word-input input{
+               width: 100%;
+               height: 100%;
+               box-sizing: border-box;
+               font-size: 60px;
+               text-align:center;
+          }
+          #feedback{
+               width: 100%;
+               height: 200px;
+               font-size: 170px;
+               text-align: center;
+          }
+          #record{
+               width: 100%;
+               height: 100px;
+               background: cornflowerblue;
+               font-size: 80px;
+               text-align: center;
+          }
+     </style>
+     <script>
+          //게임에서 진행할 데이터를 생성하되, 순서를 갖게 해야 한다..
+          //왜? 엔터칠때마다 해당 단어, 그 다음 단어..구현하려면 순서라는게 존재해야 하므로..
+          //배열로 준비시키자!!데이터가 순서를 가지며 메모리에 올라간다!!!!ㄹ
+          var word=new Array();//배열 준비(크기는 정하지 않았다..)
+          word[0]="합정역";
+          word[1]="합쭉이";
+          word[2]="합동잔치";
+          word[3]="합판물";
+          word[4]="합기도";
+          word[5]="핵전쟁";
+          word[6]="짜장면";
+          word[7]="짱뽕";
+          word[8]="탕수육";
+          word[9]="군만두";
+
+          var question;
+          var txt;
+          var feedback;
+          var record;
+          var n=0;//단어배열의 index정보를 가진 변수(즉 몇번째 데이터를 보여줄지 결정)
+          var score=0;//점수를 누적시킬 변수
+          
+          function init(){
+               //아이디가 부여된 엘리먼트들을 전역변수로 미리 선언해 놓자!
+               question=document.getElementById("question");
+               txt=document.getElementById("txt");
+               feedback=document.getElementById("feedback");
+               record=document.getElementById("record");
+
+               
+               printWord();//단어 출력!!
+               printScore();//점수 출력!!
+
+               //txt에 커서 프로그래밍적으로 커서 올려놓기!!
+               txt.focus(); //메서드임
+
+               //txt를 대상으로 키보드 이벤트 구현
+               //keydown 와 keyup /총알이라면, 눌렀다는 이벤트에 반응keydown하면 되지만,
+               //글씨 입력이라면, 눌렀다 떼었을때keyup가 하나의 철자가 입력되는 시점이다
+               txt.addEventListener("keyup",function(){
+                   // console.log("철자를 쳤네요");
+                   //키보드 중, 엔터키를 누를때 다음 단어 나오게 처리..
+
+                   //alert(event.keyCode);
+                   if(event.keyCode==13){
+                        //입력값과 출력된 단어와의 일치성을 판단한 후, 피드백 처리
+                         if(txt.value==question.innerText){
+                              //칭찬의 피드백 o 출력
+                              feedback.innerText="O";
+                              //점수도 10점 증가
+                              score+=10;
+                              printScore();
+                         }else{
+                              //틀렸다는 피드백 x출력
+                              feedback.innerText="X";
+                              //점수
+                              score-=10;
+                              printScore();
+
+                         }
+
+                         //텍스트 박스에 입력한 데이터 초기화
+                         txt.value="";
+
+                        //다음 단어 나오게..
+                         n++;
+                         printWord();
+
+                   }
+               });
+          }
+
+
+          //단어 출력처리
+          function printWord(){
+               question.innerText=word[n];
+          }
+
+          //점수 출력처리
+          function printScore(){
+               record.innerText=score+"점";
+          }
+
+          window.addEventListener("load",function(){
+               init();
+          });
+     </script>
+     
+</head>
+<body>
+     <div class="wrapper">
+          <div id="question">짱뽕</div>
+          <div class="word-input">
+                    <input id="txt" type="text" placeholder="단어 따라치세요">
+          </div>
+          <div id="feedback">O</div>
+          <div id="record">10점</div>
+     </div>
+
+</body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=button] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  width: 800px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  position: relative;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+     /*
+     $(document).ready(function(){//onLoad
+     });
+     */ 
+     $(function(){//위 코드를 더 줄인 onLoad
+          //입력양식을 화면밖에 나와있게 하고, 애니메이션 메서드로 돌아오게 만든다
+          $(".container").css({
+               "left":"-800px"
+          }).animate({
+               left:"0px"
+          });
+
+          //버튼을 클릭하면..
+          $("#bt").click(function(){
+               //alert("눌렀어?");
+               //유효성 체크하자
+               checkVaild2();//제이쿼리 방식의 유효성 체크 호출
+          });
+     });
+     //순수 js 코드로 작성할 경우
+     function checkVaild1(){
+          var fname=document.getElementById("fname");
+          var lname=document.getElementById("lname");
+          var form1=document.getElementById("form1");
+          var country=document.getElementById("country");
+          var subject=document.getElementById("subject");
+
+          //fname.value="제이쿼리 재밌다"; //value의 set
+          //alert("fname의 현재 값음"+fname.value); //value의 return
+          if(fname.value==""){//value 값이 비어있다면..
+               alert("이름을 입력하세요");
+          }else if(lname.value==""){
+               alert("성을 입력하세요");
+          }else if(country.value==""){
+               alert("나라를 입력하세요");
+          }else if(subject.value==""){
+               alert("subject을 입력하세요");
+          }else{
+               form1.action="http://localhost:7979";//전송할 서버 주소
+               form1.submit();
+          }
+     }
+     
+
+     //JQuery 로 작성할 경우
+     function checkVaild2(){
+          if($("#fname").val()==""){
+               alert("fname 을 입력하시오");
+               $("#fname").focus();
+
+          }else if($("#lname").val()==""){
+               alert("lname을 입력하세요");
+               $("#lname").focus();
+
+          }else if($("#country").val()==""){
+               alert("country을 입력하세요");
+               $("#country").focus();
+
+          }else if($("#subject").val()==""){
+               alert("subject 입력하세요");
+               $("#subject").focus();
+          }else{
+               //우리가 구축한 node.js 서버로 데이터들을 전송하자!!
+               $("#form1").attr("action","http://localhost:7979/regist");//전송할 서버 주소, 포트번호 이후부터 URL
+               $("#form1").submit();
+          }
+     }
+
+     
+</script>
+
+
+</head>
+<body>
+
+<h3>Contact Form</h3>
+
+<div class="container">
+  <form id="form1" action="/action_page.php">
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    <select id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    <input type="button" value="Submit" id="bt">
+  </form>
+</div>
+
+</body>
+</html>
