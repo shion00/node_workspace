@@ -8,7 +8,7 @@ var fs=require("fs");//File System 모듈, 파일을 읽거나 쓸 수 있는 �
 let conStr={
      user:"user0907",
      password:"1234",
-     connectionString:"localhost/XE" //XE 는 오라클 설치시 이름
+     connectionString:"localhost/XE" //XE 는 오라클 설치시 오라클이름
 };//오라클에 접속할때 필요한 정보!!
 
 //서버는 클라이언트의 요청이 들어오면, 반드시 응답을 해야한다.

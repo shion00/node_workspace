@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body>
+     <!-- GET/Post 방식으로 각 전송해보는 실습 -->
+
+     <!-- GET방식 예1) 일반링크 노출 o 보안 x 무제한x- -->
+     <a href="http://localhost:9999?id=scott&pass=1234">서버메인에 접속</a>
+
+     <!-- GET방식 예2) form태그에 아무것도 지정하지 않은 경우(즉 디폴트는 get방식임) -->
+     <form action="http://localhost:9999">
+          <input type="text" name="id">
+          <input type="pass" name="pass">
+          <button>GET 전송</button>
+     </form>
+     
+     <!-- Post 방식 예)1  노출 x 보안 x 무제한o 
+          URL에 노출되지 않는것 뿐이지 body에 들어있기 때문에 
+          개발자모드에서 body에서 볼 수 있기때문에 보안이 되는것이 아니다.--> 
+     <form action="http://localhost:9999" method="post">
+          <input type="text" name="id">
+          <input type="pass" name="pass">
+          <button>Post 전송</button>
+     </form>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          function getSubList(obj){
+               //var sell=document.getElementsByName("category_id")[0];
+               //location.href="/animal?category_id="+sell.value;
+               location.href="/animal?category_id="+obj.value;
+               
+               //서버에 요청 (get/post)
+               //js 스크립트는 보안이 불가(HTML소스와 함께 작성되므로, 소스보기에서 원본소스가 노출)
+               // var sql="select * from animal where category_id=3";
+               // var mysql=require("mysql");
+               // var con=mysql.createConnection({
+               //      url:
+               //      user:
+               //      password:
+               //      database:
+               // });
+               // con.query(sql);
+          }
+
+     </script>
+
+</head>
+<body>
+     서버에서 다시 넘겨받은 category_id 는 <%=category_id%>
+
+     <select name="category_id" id="" onChange="getSubList(this)"> <!-- onChange -->
+          <option value="0">동물구분</option>
+          <%for(var i=0;i<categoryArray.length;i++){%>
+               <%var category=categoryArray[i];%>
+               <option <%if(category.category_id==caregory_id){%>selected<%}%> value="<%=category.category_id%>"><%=category.category_name%></option>
+          <%}%>
+     </select>
+
+     <select name="animal_id" id="">
+          <%for(var i=0;i<animalArray.length;i++){%>
+          <%var animal=animalArray[i]%>
+          <option value="<%=animal.animal_id%>"><%=animal.name%></option>
+          <%}%>
+     </select>
+
+</body>
+</html>

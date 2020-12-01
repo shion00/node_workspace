@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          //<script>안에는 js문법만 온다 <tr> x 
+     </script>
+</head>
+<body>
+     
+     <%="게시판 목록"%>
+     <table width="100%" border="1px">
+          <tr>
+               <td>No</td>
+               <td>제목</td>
+               <td>작성자</td>
+               <td>등록일</td>
+               <td>조회수</td>
+          </tr>
+          <%
+          //퍼센트로 감싼 코드만 렌더링의 대상이 된다!!
+          var total=10;
+          %>
+          <%for(var i=1;i<=total;i++){%>
+               <tr <%if(i%3==0){%>bgcolor="yellow"<%}%>>
+                    <td><%=i%></td>
+                    <td><a href="/board/list?no=<%=i%>">내일부터는 대면 강의시작입니다.</a></td>
+                    <td>노동부</td>
+                    <td>2020-10-15</td>
+                    <td>589</td>
+               </tr>
+          <%}%>
+
+                    
+     </table>
+</body>
+</html>

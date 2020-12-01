@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body>
+     회원 목록 나올 곳
+     총 회원 수는 <%=memberArray.length%>명 입니다.
+
+     <table width="100%" border="1px">
+          <tr align="center">
+               <td>member2_id</td>
+               <td>uid</td>
+               <td>password</td>
+               <td>uname</td>
+               <td>phone</td>
+               <td>email</td>
+               <td>receive</td>
+               <td>addr</td>
+               <td>memo</td>
+          </tr>
+          <%for(var i=0;i<memberArray.length;i++){%>
+               <%var member=memberArray[i];%>
+          <tr align="center" onMouseOver="this.style.background='yellow'" onMouseOut="this.style.background=''">
+               <td>
+                    <a href="/member/detail?member2_id=<%=member.member2_id%>"><%=member.member2_id%></a>
+               </td>
+               <td><%=member.uid%></td>
+               <td><%=member.password%></td>
+               <td><%=member.uname%></td>
+               <td><%=member.phone%></td>
+               <td><%=member.email%></td>
+               <td><%=member.receive%></td>
+               <td><%=member.addr%></td>
+               <td><%=member.memo%></td>
+          </tr>
+          <%}%>
+          <tr>
+               <td colspan="7">
+                    <button onClick="location.href='/member/registForm';">회원등록</button>
+                    <!--  location.href="" 자바스크립트에서 링크 거는 방법-->
+               </td>
+          </tr>
+     </table>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=button] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(function(){
+    $($("input[type='button']")[0]).click(function(){
+      location.href="/";
+    });
+  });
+
+
+  
+</script>
+</head>
+<body>
+
+<h3>등록하기</h3>
+
+<div class="container">
+  <form>
+    <input type="text" id="" name="title" value="" placeholder="제목..">
+    <input type="text" id="" name="writer" value="" placeholder="작성자..">
+    <textarea id="" name="content" value="" placeholder="내용.." style="height:200px"></textarea>
+    <input type="button"  value="목록보기">
+    <input type="button"  value="등록하기">
+  </form>
+</div>
+
+</body>
+</html>

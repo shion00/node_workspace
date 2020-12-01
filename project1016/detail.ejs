@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=button] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+     $(function(){
+          $($("input[type='button']")[0]).click(function(){
+               location.href="/notice/list";
+          });
+     });
+
+     //삭제를 누르면..
+     $(function(){
+          $($("input[type='button']")[2]).click(function(){
+            if(confirm("삭제하시겠어요?")){
+              //삭제 요청(Get/post? 일부러 post 로 가겠다..)
+              //post 로 보낸다는 것은 form 양식을 통해 보는다는 것
+              //delete from notice where notice_id=6;
+              $("form").attr({
+                "method":"post",//전송방법
+                "action":"/notice/del"//요청uri
+              });
+              $("form").submit();//전송
+
+            }
+          });
+     });
+
+
+</script>
+</head>
+<body>
+
+<h3>내용 보기</h3>
+
+<div class="container">
+  <form action="/action_page.php">
+    <!-- notice_id 파라미터로 사용하기 위함 hidden은 소스보기로는 보여진다-->
+    <input type="hidden" name="notice_id" value="<%=notice.notice_id%>">
+    <input type="text" id="fname" name="firstname" value="<%=notice.title%>">
+    <input type="text" id="lname" name="lastname" value="<%=notice.writer%>">
+    <textarea id="subject" name="subject" style="height:200px"><%=notice.content%></textarea>
+    
+    <input type="button" value="목록으로">
+    <input type="button" value="수정하기">
+    <input type="button" value="삭제하기">
+    <!-- <button type="button"><.button> 개념-->
+  </form>
+</div>
+
+</body>
+</html>

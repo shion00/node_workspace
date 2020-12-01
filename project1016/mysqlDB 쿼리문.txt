@@ -1,0 +1,9 @@
+create table notice(
+ notice_id int primary key auto_increment
+,title varchar(200)
+,writer varchar(20)
+,content text   //1기가 
+,regdate timestamp default now()
+,hit int default 0 //숫자는 초기값을 넣어주어야 좋다, 안넣어주면 null 이다, 그럼 연산이 안먹힌다.
+);
+

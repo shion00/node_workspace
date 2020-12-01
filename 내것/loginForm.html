@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <style>
+          form button{
+               background-color: blue;
+               color: chartreuse;
+          }
+          /* CSS에서 name으로 선택하는 방법   form input[name='m_name']*/
+          form input[name='m_name'], input[name='m_pass']{
+               background-color: coral;
+          }
+     </style>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script>
+          //문서가 로드되면, 즉 DOM이 모두 메모리에 올라오면, 익명함수를 호출한다.
+          $(function(){
+               //버튼 클릭이벤트 구현
+               //JQuery는 CSS의 선택자를 따른다.
+               $("form button").on("click",function(){
+                    checkValue();
+               });
+          });
+
+          //유효성 체크
+          function checkValue(){
+               if($("form input[name='m_name']").val()==""){//쌍따움표로 선택자를 감싼다.
+                    alert("아이디를 입력해 주세요");
+               }else if($("form input[name='m_pass']").val()==""){
+                    alert("패스워드를 입력해 주세요");
+               }else{
+                    //위의 if문들을 만나지 않았다는 것은, 제대로 입력했다는 것임
+                    //즉 유효한 입력임.
+                    $("form").attr({
+                         action:"/login",
+                         method:"get" //get 방식으로 전송하겠다는 의미, 노출임/post 방식은 비노출
+                    });//전송대상 서버주소
+                    $("form").submit();//전송!!
+               }
+          }
+     </script>
+</head>
+<body>
+     <!-- 입력양식은 반드시 <form>태그에 넣는다,
+          폼태그란? 서버에 전송범위를 설정할 수 있는 양식 태그  
+          id, name 공통점: 문서내의 DOM 요소간 구분해 준다.
+          차이점 : id 중복 X, name 중복 O
+          서버에 전송시, 변수역할을 해주는 것은 오직 name 만이 가능하다!-->
+     <form>
+          <input type="text" name="m_name" id="" placeholder="아이디입력">
+          <input type="password" name="m_pass" id="" placeholder="비밀번호 입력">
+          <!-- html5 에서 등장한 아래의 button 태그는 form안에 둘 경우 자동 submit 이 발생함  
+           form태그에 onSubmit="event.preventDefault()"-->
+          <button type="button">전송</button>
+          <!-- 타입을 버튼으로 명시하지 않으면 기본 submit 타입이다. -->
+     </form>
+</body>
+</html>

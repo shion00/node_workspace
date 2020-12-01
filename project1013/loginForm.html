@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+form button{
+    background-color: dodgerblue;
+    color:white;
+}
+form input[name='m_name'], input[name='m_pass']{
+    background-color:gold;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+//문서가 로드되면, 즉 DOM이 모두 메모리에 올라오면, 익명함수를 호출한다    
+$(function(){
+    //버튼 클릭이벤트 구현 
+    //jquery는 css의 선택자를 따른다..
+    $("form button").on("click", function(){
+        checkValue();
+    })
+});     
+//유효성 체크 함수 
+function checkValue(){
+    if($("form input[name='m_name']").val()==""){
+        alert("아이디를 입력해 주세요");
+    }else if($("form input[name='m_pass']").val()==""){
+        alert("패스워드를 입력해 주세요");
+    }else{
+        //위의 if문들을 만나지 않았다는 것은, 제대로 입력했다는 것임
+        //즉 유효한 입력임..
+        
+        $("form").attr({
+            action:"/login", 
+            method:"get"   //post or get방식으로 전송하겠다는 의미임
+        }); //전송 대상 서버 주소
+        $("form").submit(); //전송!!
+    }
+}   
+</script>
+</head>
+<body>
+    <!-- 
+        폼태그란? 서버에 전송시 그 범위를 설정할 수 있는 양식 태그 
+        id, name 공통점: 문서내의 dom 요소간 구분 
+        차이점:  id중복 허용X,  name중복 O
+                    서버에 전송시, 변수역할을 해주는 것은 오직  name만이 가능
+    -->
+    <form>
+        <input type="text" name="m_name" placeholder="아이디입력">
+        <input type="password" name="m_pass" placeholder="비밀번호 입력">
+        <!-- html5에서 등장한 아래의 button 태그는 form안에 둘경우 자동 submit 이 발생함 -->
+        <button type="button">전송</button>
+    </form>            
+</body>
+</html>
